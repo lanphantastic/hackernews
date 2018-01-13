@@ -6,10 +6,10 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.boolean :admin,                default: false, null: false
       t.boolean :disabled,             default: false, null: false
       t.integer :karma,                default: 0,     null: false
-      t.text :about,
+      t.text :about
       t.string :submitted
 
-      t.timestamps
+      t.timestamps null: false
     end
     add_index :users, :username, unique: true
   end
