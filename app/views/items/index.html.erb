@@ -6,7 +6,7 @@
      <%= link_to(item.title, item.url) %>
     </li>
     <li>
-      <%= item.score %> points by <%= item.username %> | <%= item.time %>
+      <%= item.score %> points by <%= item.username %> | <%= time_ago_in_words(item.time) %> ago |
       <%= link_to "comment", "http://news.ycombinator.com/item?id=#{item.item_id.to_s}", :target => "_blank" %>
     </li>
   <% end %>
