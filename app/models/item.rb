@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
-  # associations
-  # belongs_to :user
 
   # validations
-  # validates :title, presence: true, length: { maximum: 250 }, allow_blank: false
-  # validates :id, uniqueness: true
+  validates :username, presence: true
+  validates :item_id, presence: true, uniqueness: true
+  validates :title, presence: true
+  validates :time, presence: true
+  validates :item_type, presence: true
 end
