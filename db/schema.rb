@@ -16,36 +16,17 @@ ActiveRecord::Schema.define(version: 20180111224628) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "username"
+    t.integer "descendants", null: false
+    t.integer "item_id", null: false
+    t.integer "score"
+    t.integer "time", null: false
+    t.string "title"
+    t.string "item_type", null: false
     t.string "url"
     t.text "content"
-    t.string "type", null: false
-    t.integer "user_id", null: false
-    t.boolean "disabled", default: false, null: false
-    t.boolean "deleted", default: false, null: false
-    t.boolean "dead", default: false, null: false
-    t.integer "parent"
-    t.integer "kids"
-    t.integer "comments_count", default: 0, null: false
-    t.integer "score", default: 0, null: false
-    t.integer "rank", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["disabled"], name: "index_items_on_disabled"
-    t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username", null: false
-    t.string "password_digest", null: false
-    t.boolean "admin", default: false, null: false
-    t.boolean "disabled", default: false, null: false
-    t.integer "karma", default: 0, null: false
-    t.text "about"
-    t.string "submitted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

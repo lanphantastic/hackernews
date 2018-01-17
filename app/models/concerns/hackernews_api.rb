@@ -2,41 +2,62 @@ class HackernewsAPI
 
   def get_all_results
     if Rails.env.development?
-      return $ticketmaster_api_result if $ticketmaster_api_result
-      $ticketmaster_api_result = call_items_api
-      return $ticketmaster_api_result
+      return $hackernewsapi_api_result if $hackernewsapi_api_result
+      $hackernewsapi_api_result = call_api
+      return $hackernewsapi_api_result
     else
-      return call_items_api
+      return call_api
     end
   end
 
-  def call_items_api
-    call = get_all_results
-    url = "https://hacker-news.firebaseio.com/v0/item/"
-    max_items = "https://hacker-news.firebaseio.com/v0/maxitem.json?print=pretty"
+  def call_api
 
-    # total_entry = HTTParty.get(max_items)
-    total_entry = 10
+    # STEP 1: Call 500 stories from Hackernews and parse its body
+    url = "https://hacker-news.firebaseio.com/v0/newstories/"
 
-    response = []
+    @results = HTTParty.get("#{url}.json?print=pretty")
+    @top_stories = JSON.parse(@results.body)
 
-    # setup the count loop
-    number = 0
+    # STEP 2: Setup to store the new stories in an empty array
+    new_stories = []
 
-    total_entry.times do
-      @results = HTTParty.get("#{url}#{number}.json")
-      parsed_results = JSON.parse(@results.body)
-      if parsed_results.class == Hash
-      response << parsed_results
-      end
-      number += 1
+    # STEP 3: For each story(it's an id), store the 'item' into the new_stories array
+    @top_stories.each do |story|
+      item = HTTParty.get("https://hacker-news.firebaseio.com/v0/item/#{story}.json?print=pretty")
+
+      new_stories << item
     end
-    return response
-
+    return new_stories
   end
 
+  def create_item
+    response = get_all_results
+
+    response.each do |element|
+      kids = element['kids']
+      new_item = Item.create(
+        username: element['by'],
+        descendants: element['descendants'],
+        item_id: element['id'],
+        score: element['score'],
+        time: element['time'],
+        title: element['title'],
+        item_type: element['type'],
+        url: element['url'],
+        content: element['text']
+      )
+    end
+  end
+
+  # Invoke this method to start calling the HackernewsAPI and store the new stories into the database
   def create_db
-    call_items_api
+    call_api
+    create_item
+  end
+
+  def destroy_and_create_db
+    Item.destroy_all
+    create_db
   end
 
 end
