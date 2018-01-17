@@ -1,0 +1,13 @@
+<h1>index</h1>
+
+<ul>
+  <% @items.each do |item| %>
+    <li>
+     <%= link_to(item.title, item.url) %>
+    </li>
+    <li>
+      <%= item.score %> points by <%= item.username %> | <%= item.time %> 
+      <%= link_to "comment", "http://news.ycombinator.com/item?id=#{item.item_id.to_s}", :target => "_blank" %>
+    </li>
+  <% end %>
+</ul>
