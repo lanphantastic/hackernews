@@ -6,4 +6,5 @@ class Item < ApplicationRecord
   validates :title, presence: true
   validates :time, presence: true
   validates :item_type, presence: true
+
 end
