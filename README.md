@@ -13,3 +13,6 @@ The objectives of this assignment are the following:
 
 ### Responsive
 ![Responsive](https://thumbs.gfycat.com/YoungImpeccableArkshell-size_restricted.gif)
+
+### Link and Paginate
+![Link and Paginate](https://thumbs.gfycat.com/CourageousMiserlyGermanshepherd-size_restricted.gif)
