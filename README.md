@@ -16,4 +16,4 @@ The objectives of this assignment are the following:
 ![Responsive](https://thumbs.gfycat.com/YoungImpeccableArkshell-size_restricted.gif)
 
 ### Link and Paginate
-![Link and Paginate](https://thumbs.gfycat.com/CourageousMiserlyGermanshepherd-size_restricted.gif)
+![Link and Paginate](https://thumbs.gfycat.com/TediousMenacingIcelandichorse-size_restricted.gif)
