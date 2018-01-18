@@ -10,6 +10,8 @@
   </div>
 </nav>
 
+<%= will_paginate(@items, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'd-flex justify-content-center') %>
+
 <div class="container">
   <div class="list-group">
     <% @items.each do |item| %>
@@ -30,6 +32,6 @@
 
   </div>
 
-  <button type="button" class="btn btn-primary">More</button>
+<%= will_paginate(@items, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'd-flex justify-content-center') %>
 
 </div>
