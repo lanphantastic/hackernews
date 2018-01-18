@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all.order(:time) # you can add .limit(30)
+    @items = Item.all.order(:time)
   end
 end
