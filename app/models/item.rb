@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   # validations
   validates :username, presence: true
   validates :item_id, presence: true, uniqueness: true
