@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="list-group">
+    <% @asks.each do |ask| %>
+
+      <%=link_to("http://news.ycombinator.com/item?id=#{ask.item_id}", class:"list-group-item list-group-item-action flex-column align-items-start", :target => "_blank") do %>
+
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= ask.username %></h5>
+        <small><%= time_ago_in_words(ask.time) %></small>
+      </div>
+      <p class="mb-1"><%= ask.title %></p>
+      <small class="text-muted"><%= ask.descendants%> comment</small>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>
