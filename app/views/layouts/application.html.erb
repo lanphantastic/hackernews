@@ -11,8 +11,27 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="<%= root_path %>">HACKERNEWS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="<%=asks_path %>">Asks <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <%= will_paginate(@items, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'd-flex justify-content-center') %>
+
   <body>
     <%= yield %>
+
+
+  <%= will_paginate(@items, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: 'd-flex justify-content-center') %>
 
   <!-- Footer -->
   <footer class="position-sticky py-3 bg-dark">

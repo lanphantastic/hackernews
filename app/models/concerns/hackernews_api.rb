@@ -10,7 +10,7 @@ class HackernewsAPI
   #   end
   # end
 
-  def call_api
+  def create_item
 
     # STEP 1: Call 500 stories from Hackernews and parse its body
     url = "https://hacker-news.firebaseio.com/v0/newstories/"
@@ -27,13 +27,10 @@ class HackernewsAPI
 
       new_stories << item
     end
-    return new_stories
-  end
 
-  def create_item
     # response = get_all_results
 
-    response.each do |element|
+    new_stories.each do |element|
       kids = element['kids']
       new_item = Item.create(
         username: element['by'],
@@ -83,15 +80,13 @@ class HackernewsAPI
 
   # Invoke this method to start calling the HackernewsAPI and store the new stories into the database
   def create_db
-    call_api
     create_item
     create_ask
   end
 
   def destroy_and_create_db
     Item.destroy_all
-    Ask.destory_all
-    create_db
+    Ask.destroy_all
   end
 
 end
